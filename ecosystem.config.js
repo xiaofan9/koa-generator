@@ -16,7 +16,6 @@ module.exports = {
         interpreter_args: "--trace-sync-io", // node 后缀
         "watch": [ // 监听目录
             "app",
-            "bin",
             "config"
         ],
         "instances": 0, // 意味着PM2将根据CPU的数量（集群模式）启动可能的最大进程
