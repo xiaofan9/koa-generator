@@ -1,0 +1,39 @@
+{
+    "name": "topstar-api",
+    "version": "1.0.0",
+    "description": "topstar api server",
+    "main": "app.js",
+    "scripts": {
+        "test": "",
+        "start": "pm2 start ecosystem.config.js",
+        "dev": "set debug=topstar-api:* && nodemon ./bin/www"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HalfSheep/topstar-api.git"
+    },
+    "keywords": [
+        "topstar",
+        "github",
+        "git"
+    ],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/HalfSheep/topstar-api/issues"
+    },
+    "homepage": "https://github.com/HalfSheep/topstar-api#readme",
+    "dependencies": {
+        "debug": "^3.1.0",
+        "koa": "^2.3.0",
+        "koa-bodyparser": "^4.2.0",
+        "koa-json": "^2.0.2",
+        "koa-logger": "^3.1.0",
+        "koa-onerror": "^3.1.0",
+        "koa-router": "^7.2.1",
+        "koa-static": "^4.0.1",
+        "mongoose": "^4.12.5",
+        "nodemon": "^1.12.1",
+        "nunjucks": "^3.0.1"
+    }
+}

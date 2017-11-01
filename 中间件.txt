@@ -1,0 +1,13 @@
+koa
+koa-json
+koa-favicon
+koa-logger
+koa-onerror
+koa-static
+koa-bodyparser
+koa-router
+
+debug
+nodemon
+nunjucks
+mongoose
