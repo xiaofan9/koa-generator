@@ -6,13 +6,13 @@ const onerror = require('koa-onerror');
 const staticServer = require('koa-static');
 const bodyParser = require("koa-bodyparser");
 const nunjucks = require("./app/middleware/nunjucks");
-const router = require("./app/middleware/controller")();
+const router = require("./app/router");
 
 const app = new Koa();
 
 onerror(app); // koa的错误处理
 
-app.use(nunjucks(path.join(__dirname, "views"), {
+app.use(nunjucks(path.join(__dirname, "app", "views"), {
     extension: "njk"
 }));
 

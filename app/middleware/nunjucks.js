@@ -29,7 +29,7 @@ function createEnv(path, opts) {
         throwOnUndefined = opts.throwOnUndefined || false,
         tags = opts.tags || {},
         env = new nunjucks.Environment(
-            new nunjucks.FileSystemLoader('views', {
+            new nunjucks.FileSystemLoader(path, {
                 noCache,
                 watch,
             }), {
