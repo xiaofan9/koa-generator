@@ -6,6 +6,6 @@ module.exports = {
     authConfig: {
         authSource: "admin",
         user: "root",
-        password: "root"
-    }
-}
+        password: "root",
+    },
+};

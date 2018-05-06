@@ -9,25 +9,26 @@ const schema = new mongoose.Schema({
     num: {
         require: true,
         default: 1,
-        type: Number
-    }
+        type: Number,
+    },
 });
 
 const Test = db.model("test", schema, "test");
 
 const testEntity = new Test({
-    name: "小凡"
+    name: "小凡",
 });
 
 testEntity.save(function(err) {
     if (err) {
         require("debug")("topstar-api:db-find")(err);
 
-        return
+        return;
     }
 
     Test.find(function(err, persons) {
-        //查询到的所有person
+        // 查询到的所有person
+        if (err) throw err;
         console.log(persons);
     });
 });
