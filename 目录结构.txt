@@ -1,0 +1,21 @@
+app 程序入口
+  app/router.js 路由入口
+  app/controller/* 路由控制器
+  app/middleware/* 用于编写中间件
+  app/modle/* 用于连接数据库
+  app/service/* 用于编写业务逻辑层
+  app/utils/* 用于存放些工具类的函数
+  app/views/* 存放视图文件  
+
+bin/* 命令
+  bin/www 启动服务器命令
+
+config/* 用于编写配置文件
+
+logs/* 存放生产环境日志
+
+public/* 用于放置静态资源
+
+test/* 用于单元测试
+
+app.js 程序初始化
