@@ -12,16 +12,20 @@ if (config.auth) {
 } else url = `mongodb://${config.host}:${config.port}/${config.name}`;
 
 // 单个数据ku连接
-mongoose.connect(url, {
-  useMongoClient: true
-});
+mongoose.connect(
+  url,
+  {
+    useMongoClient: true
+  }
+);
 
 const db = mongoose.connection;
 
 db.on("error", err => {
   // 关闭数据库
   mongoose.connection.close();
-  require("debug")("topstar-api:db-connect")(err);
+
+  throw err;
 });
 
 module.exports = db;

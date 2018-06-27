@@ -2,10 +2,10 @@ app 程序入口
   app/router.js 路由入口
   app/controller/* 路由控制器
   app/middleware/* 用于编写中间件
-  app/modle/* 用于连接数据库
+  app/modle/* 用于连接数据库，需要手动调用
   app/service/* 用于编写业务逻辑层
   app/utils/* 用于存放些工具类的函数
-  app/views/* 存放视图文件  
+  app/views/* 存放视图文件
 
 bin/* 命令
   bin/www 启动服务器命令

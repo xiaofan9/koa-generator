@@ -24,6 +24,7 @@ app.use(
   })
 );
 
+// 加载html模板
 app.use(
   nunjucks(path.join(__dirname, "app", "views"), {
     extension: "njk"

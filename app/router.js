@@ -12,6 +12,7 @@ router
 
 let stack = router.routes().router.stack;
 
+// 打印加载的路由
 for (let s of stack) require("debug")("topstar-api:bind-router")(s.path);
 
 module.exports = router;

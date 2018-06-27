@@ -1,3 +1,7 @@
+/**
+ * 数据库调用示例
+ */
+
 const db = require("./connect");
 
 const mongoose = require("mongoose");

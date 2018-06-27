@@ -13,7 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/HalfSheep/topstar-api.git"
   },
-  "keywords": ["topstar", "github", "git"],
+  "keywords": [
+    "topstar",
+    "github",
+    "git"
+  ],
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -21,7 +25,6 @@
   },
   "homepage": "https://github.com/HalfSheep/topstar-api#readme",
   "dependencies": {
-    "debug": "^3.1.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^3.0.0",
@@ -31,16 +34,14 @@
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "mongoose": "^4.12.5",
-    "nodemon": "^1.12.1",
     "nunjucks": "^3.0.1",
-    "portfinder": "^1.0.13",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "superagent": "^3.8.3"
   },
   "devDependencies": {
     "debug": "^3.1.0",
-    "iconv-lite": "^0.4.23",
+    "lodash": "^4.17.10",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.4",
     "power-assert": "^1.5.0",
