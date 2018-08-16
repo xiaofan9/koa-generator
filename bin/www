@@ -1,19 +1,26 @@
 #!/usr/bin/env node
 const app = require("../app");
-const debug = require("debug")("topstar-api:admin");
+const debug = require("debug")("koa-generator:admin");
 const http = require("http");
 const config = require("../config");
 const kill = require("../app/middleware/kill");
+const portfinder = require("portfinder");
 
 /**
  * 创建http 服务器
  */
 async function createServer(port) {
-  await kill(port).catch(process.exit);
+  if (config.kill) {
+    await kill(port).catch(process.exit);
+  } else {
+    portfinder.basePort = port;
+
+    port = await portfinder.getPortPromise().catch(process.exit);
+  }
 
   const server = http.createServer(app.callback());
 
-  server.listen(port);
+  server.listen(port, config.host);
   server.on("error", onError);
   server.on("listening", onListening);
 
@@ -44,7 +51,11 @@ async function createServer(port) {
   function onListening() {
     var addr = server.address();
     var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-    debug("Listening on " + bind + ", http://localhost:" + port);
+    debug("Listening on " + bind);
+
+    if (process.env === "production") {
+      console.log("Your application is Listening on " + bind);
+    }
   }
 }
 

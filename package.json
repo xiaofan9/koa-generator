@@ -1,29 +1,29 @@
 {
-  "name": "topstar-api",
+  "name": "koa-generator",
   "version": "1.0.0",
-  "description": "topstar api server",
+  "description": "scaffolding based on koa2",
   "main": "app.js",
   "scripts": {
     "test": "mocha test/*.test.js",
     "start": "pm2 start ecosystem.config.js",
-    "dev": "set debug=topstar-api:* && nodemon ./bin/www",
-    "debug": "set debug=topstar-api:* && node ./bin/www"
+    "dev": "set debug=koa-generator:* && nodemon ./bin/www",
+    "debug": "set debug=koa-generator:* && node ./bin/www"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HalfSheep/topstar-api.git"
+    "url": "git+https://github.com/xiaofan9/koa-generator.git"
   },
   "keywords": [
     "topstar",
     "github",
     "git"
   ],
-  "author": "",
+  "author": "xiaofan9",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HalfSheep/topstar-api/issues"
+    "url": "https://github.com/xiaofan9/koa-generator/issues"
   },
-  "homepage": "https://github.com/HalfSheep/topstar-api#readme",
+  "homepage": "https://github.com/xiaofan9/koa-generator#readme",
   "dependencies": {
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
@@ -35,6 +35,8 @@
     "koa-static": "^4.0.1",
     "mongoose": "^4.12.5",
     "nunjucks": "^3.0.1",
+    "port-find": "^0.1.0",
+    "portfinder": "^1.0.16",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "superagent": "^3.8.3"

@@ -22,19 +22,27 @@ const Test = db.model("test", schema, "test");
 
 // entity
 const testEntity = new Test({
-  name: "小凡"
+  name: "xiaofan"
 });
 
 testEntity.save(function(err) {
   if (err) {
-    require("debug")("topstar-api:db-find")(err);
+    require("debug")("koa-generator:db-find")(err);
 
     return;
   }
+});
 
-  Test.find(function(err, persons) {
-    // 查询到的所有person
-    if (err) throw err;
-    console.log(persons);
-  });
+testEntity.remove(function(err, doc) {
+  if (err) console.log(err);
+
+  console.log("doc", doc);
+});
+
+Test.find(function(err, persons) {
+  // 查询到的所有person
+  if (err) throw err;
+  console.log(123, persons);
+
+  process.exit();
 });

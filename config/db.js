@@ -1,5 +1,5 @@
 module.exports = {
-  name: "topstar",
+  name: "test",
   port: "27017",
   host: "localhost",
   auth: false,
