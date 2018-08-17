@@ -20,7 +20,11 @@ async function createServer(port) {
 
   const server = http.createServer(app.callback());
 
-  server.listen(port, config.host);
+  if (config.host) {
+    server.listen(port, config.host);
+  } else {
+    server.listen(port);
+  }
   server.on("error", onError);
   server.on("listening", onListening);
 
