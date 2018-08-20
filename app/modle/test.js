@@ -5,6 +5,8 @@
 const db = require("./connect");
 
 const mongoose = require("mongoose");
+const pkg = require("../package.json");
+const debug = require("debug")(pkg.name + ":db-find");
 
 mongoose.Promise = Promise;
 
@@ -27,7 +29,7 @@ const testEntity = new Test({
 
 testEntity.save(function(err) {
   if (err) {
-    require("debug")("koa-generator:db-find")(err);
+    debug(err);
 
     return;
   }

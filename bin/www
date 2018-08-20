@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const app = require("../app");
-const debug = require("debug")("koa-generator:admin");
+const pkg = require("../package.json");
+const debug = require("debug")(pkg.name + ":admin");
 const http = require("http");
 const config = require("../config");
 const kill = require("../app/middleware/kill");

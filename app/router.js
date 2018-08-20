@@ -3,6 +3,8 @@ const KoaRouter = require("koa-router");
 const router = new KoaRouter();
 
 const index = require("./controller");
+const pkg = require("../package.json");
+const debug = require("debug")(pkg.name + ":bind-router");
 
 // 这里不使用 / 的原因是 / 不生效，原因是app.js 使用了 koa-static 中间件，挂载在了/ 上，直接返回值去了。
 router
@@ -13,6 +15,6 @@ router
 let stack = router.routes().router.stack;
 
 // 打印加载的路由
-for (let s of stack) require("debug")("koa-generator:bind-router")(s.path);
+for (let s of stack) debug(s.path);
 
 module.exports = router;
