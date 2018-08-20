@@ -14,9 +14,9 @@
     "url": "git+https://github.com/xiaofan9/koa-generator.git"
   },
   "keywords": [
-    "topstar",
-    "github",
-    "git"
+    "koa",
+    "generator",
+    "koa-generator"
   ],
   "author": "xiaofan9",
   "license": "MIT",
