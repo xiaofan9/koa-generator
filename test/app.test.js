@@ -1,13 +1,24 @@
 const request = require("supertest");
 const app = require("../app");
-const assert = require("assert");
+const assert = require("power-assert");
+const http = require("http");
+const server = http.createServer(app.callback());
 
-request(app.listen())
-  .get("/test")
-  .expect("Content-Type", /json/)
-  .expect("Content-Length", "15")
-  .expect(200)
-  .end(function(err, res) {
-    assert.equal(2, 2);
-    if (err) throw err;
+describe("url test", () => {
+  it("should complete this test", function () {
+    return new Promise(function (resolve, reject) {
+      request(server.listen())
+        .get("/test")
+        .end(function (err, res) {
+          resolve();
+          server.close();
+
+          if (err) {
+            throw err;
+          }
+
+          assert.strictEqual(2, 3);
+        });
+    });
   });
+});

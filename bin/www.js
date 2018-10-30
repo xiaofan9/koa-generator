@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const app = require("../app");
 const pkg = require("../package.json");
 const debug = require("debug")(pkg.name + ":admin");
@@ -7,11 +8,19 @@ const config = require("../config");
 const kill = require("../app/middleware/kill");
 const portfinder = require("portfinder");
 
+const port = normalizePort(config.port || process.env.PORT);
+
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = "development";
+}
+
+createServer(port);
+
 /**
  * 创建http 服务器
  */
 async function createServer(port) {
-  if (config.kill) {
+  if (config.portHandle === "kill") {
     await kill(port).catch(process.exit);
   } else {
     portfinder.basePort = port;
@@ -35,18 +44,16 @@ async function createServer(port) {
       throw error;
     }
 
-    var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+    let bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {
       case "EACCES":
         console.error(bind + " requires elevated privileges");
         process.exit(1);
-        break;
       case "EADDRINUSE":
         console.error(bind + " is already in use");
         process.exit(1);
-        break;
       default:
         throw error;
     }
@@ -54,8 +61,8 @@ async function createServer(port) {
 
   // 监听函数
   function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+    let addr = server.address();
+    let bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
     debug("Listening on " + bind);
 
     if (process.env === "production") {
@@ -77,7 +84,3 @@ function normalizePort(num) {
 
   return false;
 }
-
-const port = normalizePort(config.port || process.env.PORT);
-
-createServer(port);

@@ -10,21 +10,29 @@ function onError(err) {
 
 const dbs = {};
 
-const openDB = dbName => {
+const openDB = ({
+  name: dbName,
+  ...config
+}) => {
   if (dbs[dbName]) {
     return dbs[dbName];
   }
+
+  let url;
 
   // 多个数据ku连接;
   if (config.auth) {
     url = `mongodb://${config.authConfig.user}:${config.authConfig.password}@${
       config.host
     }:${config.port}/${dbName}?authSource=${config.authConfig.authSource}`;
-  } else url = `mongodb://${config.host}:${config.port}/${dbName}`;
+  } else {
+    url = `mongodb://${config.host}:${config.port}/${dbName}`;
+  }
 
+  // 新建连接池
   let db = mongoose.createConnection(url, {
-    useMongoClient: true
-  }); // 新建连接池
+    useNewUrlParser: true, // useMongoClient
+  });
 
   // 单个数据ku连接
   // mongoose.connect(
@@ -44,15 +52,19 @@ const openDB = dbName => {
 
   dbs[dbName] = db;
 
-  return db;
+  return dbs[dbName];
 };
 
-let obj;
+let connect;
 
 if (Array.isArray(config)) {
-  obj = { openDB };
+  config.forEach(conf => openDB(conf));
+
+  connect = dbs;
 } else {
-  obj = openDB(config.name);
+  connect = openDB(config);
 }
 
-module.exports = obj;
+connect.openDB = openDB;
+
+module.exports = connect;

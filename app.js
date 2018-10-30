@@ -7,12 +7,16 @@ const staticServer = require("koa-static");
 const bodyParser = require("koa-bodyparser");
 const nunjucks = require("./app/middleware/nunjucks");
 const compress = require("koa-compress");
-const router = require("./app/router");
+const router = require("./app/middleware/auto-add-router");
+const errorPage = require("./app/middleware/error404");
+const cors = require("koa2-cors");
+const config = require("./config");
 
 const app = new Koa();
 
-// 捕获404错误页面
-app.use(require("./app/middleware/error404"));
+if (config.cors) {
+  app.use(cors());
+}
 
 // koa的错误处理
 onerror(app);
@@ -20,14 +24,17 @@ onerror(app);
 // gzip 压缩
 app.use(
   compress({
-    level: 9
+    level: 9,
   })
 );
+
+// 捕获404错误页面
+app.use(errorPage);
 
 // 加载html模板
 app.use(
   nunjucks(path.join(__dirname, "app", "views"), {
-    extension: "njk"
+    extension: "njk",
   })
 );
 
@@ -38,17 +45,21 @@ app.use(logger());
 app.use(json());
 
 // 解析 post body
-app.use(bodyParser({ enableTypes: ["json", "form", "text"] }));
-
-// 指定静态文件中间件
 app.use(
-  staticServer(path.join(__dirname, "public"), {
-    maxage: 7 * 24 * 60 * 60 * 1000
+  bodyParser({
+    enableTypes: ["json", "form", "text"],
   })
 );
 
 // 加载路由
 app.use(router.routes());
 app.use(router.allowedMethods());
+
+// 指定静态文件中间件
+app.use(
+  staticServer(path.join(__dirname, "public"), {
+    maxage: 7 * 24 * 60 * 60 * 1000,
+  })
+);
 
 module.exports = app;

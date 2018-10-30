@@ -4,8 +4,9 @@ const isDarwin = process.platform === "darwin";
 const cmd = isWin
   ? "netstat -ano | findStr "
   : isLinux
-    ? "netstat -ntpl | grep"
-    : "lsof -i :";
+  ? "netstat -ntpl | grep"
+  : "lsof -i :";
+
 const exec = require("child_process").exec;
 const iconv = require("iconv-lite");
 const debug = require("debug")("kill");
@@ -13,8 +14,10 @@ const debug = require("debug")("kill");
 const getText = t => iconv.decode(new Buffer.from(t, "binary"), "cp936");
 
 const kill = (port = 8080) => {
-  return new Promise(function(resolve, reject) {
-    exec(cmd + port, { encoding: "binary" }, function(err, stdout, stderr) {
+  return new Promise(function (resolve, reject) {
+    exec(cmd + port, {
+      encoding: "binary",
+    }, function (err, stdout, stderr) {
       if (err && !stderr) {
         console.log("err", err);
         return resolve("端口未占用！");
@@ -28,7 +31,7 @@ const kill = (port = 8080) => {
       let pids = [];
 
       if (stdout) {
-        stdout.split("\n").forEach(function(line, index) {
+        stdout.split("\n").forEach(function (line, index) {
           const p = line.trim().split(/\s+/);
           const address = p[isWin ? 1 : 3]; // 地址，netstat 能拿到
           const isNode = p[0] === "node"; // 判断 mac 的
@@ -70,7 +73,9 @@ const kill = (port = 8080) => {
         return Promise.all(
           pids.map(pid => {
             return new Promise((resolve, reject) => {
-              exec(cmd + pid, { encoding: "binary" }, function(
+              exec(cmd + pid, {
+                encoding: "binary",
+              }, function (
                 err,
                 stdout,
                 stderr
