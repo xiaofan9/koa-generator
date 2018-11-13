@@ -6,7 +6,7 @@
   "author": "xiaofan9",
   "license": "MIT",
   "scripts": {
-    "init": "node ./bin/init",
+    "init": "npm install && node ./bin/init",
     "unit": "mocha test/*.test.js",
     "test": "npm run unit",
     "start": "pm2 start ecosystem.config.js",

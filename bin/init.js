@@ -21,29 +21,29 @@ const questions = [
   {
     name: "name",
     message: "Project name",
-    default: "test",
+    default: "test"
   },
   {
     name: "desc",
     message: "Project description",
-    default: "A koa project",
+    default: "A koa project"
   },
   {
     name: "author",
     message: "Author",
-    default: getGitUser(),
+    default: getGitUser()
   },
   {
     type: "confirm",
     name: "private",
     message: "Project is private",
-    default: "Y/n",
+    default: "Y/n"
   },
   {
     name: "cors",
     type: "confirm",
     message: "Are you use cors",
-    default: "Y/n",
+    default: "Y/n"
   },
   {
     name: "portHandle",
@@ -51,20 +51,20 @@ const questions = [
     message:
       "When the port is occupied, is it necessary to modify the port automatically or kill the process?",
     default: ["modify"],
-    choices: ["modify", "kill"],
+    choices: ["modify", "kill"]
   },
   {
     type: "confirm",
     name: "mongodb",
     message: "Are you add mongodb examples",
-    default: "Y/n",
+    default: "Y/n"
   },
   {
     type: "confirm",
     name: "unit",
     message: "Are you add unit test",
-    default: "Y/n",
-  },
+    default: "Y/n"
+  }
 ];
 
 inquirer.prompt(questions).then(an => {
@@ -78,15 +78,15 @@ inquirer.prompt(questions).then(an => {
     author: an.author,
     ...(an.private
       ? {
-        private: true,
-      }
-      : {}),
+          private: true
+        }
+      : {})
   };
 
   let cfg = {
     ...config,
     cors: an.cors,
-    portHandle: an.portHandle,
+    portHandle: an.portHandle
   };
 
   if (an.private) {
@@ -131,10 +131,6 @@ inquirer.prompt(questions).then(an => {
   fs.mkdir(path.join(pathApp, "service"));
 
   fs.removeSync(path.join(root, "readme.md"));
-
-  console.log("\r\n");
-
-  exec("npm install");
 });
 
 function getGitUser() {
