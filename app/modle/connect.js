@@ -10,10 +10,7 @@ function onError(err) {
 
 const dbs = {};
 
-const openDB = ({
-  name: dbName,
-  ...config
-}) => {
+const openDB = ({ name: dbName, ...config }) => {
   if (dbs[dbName]) {
     return dbs[dbName];
   }

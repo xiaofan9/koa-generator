@@ -21,7 +21,7 @@ const Test = db["test2"].model("test", schema, "test"); // test 表名（没有3
 
 module.exports = {
   //  通过实例化model，创建一个model实例
-  add: function (data) {
+  add: function(data) {
     return new Promise((resolve, reject) => {
       Test.create(data, (err, doc) => {
         if (err) {
@@ -34,7 +34,7 @@ module.exports = {
     });
   },
 
-  delete: function (condition) {
+  delete: function(condition) {
     return new Promise((resolve, reject) => {
       Test.remove(condition, (err, doc) => {
         if (err) {
@@ -46,7 +46,7 @@ module.exports = {
       });
     });
   },
-  update: function (condition, data) {
+  update: function(condition, data) {
     return new Promise((resolve, reject) => {
       Test.update(condition, data, (err, doc) => {
         if (err) {
@@ -58,7 +58,7 @@ module.exports = {
       });
     });
   },
-  list: function (condition) {
+  list: function(condition) {
     return new Promise((resolve, reject) => {
       Test.find(condition, (err, doc) => {
         if (err) {

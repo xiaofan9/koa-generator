@@ -28,6 +28,9 @@ app.use(
   })
 );
 
+// 输出日志
+app.use(logger());
+
 // 捕获404错误页面
 app.use(errorPage);
 
@@ -37,9 +40,6 @@ app.use(
     extension: "njk",
   })
 );
-
-// 输出日志
-app.use(logger());
 
 // 格式化json输出
 app.use(json());

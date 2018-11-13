@@ -1,18 +1,10 @@
 const nunjucks = require("nunjucks");
-const {
-  stat,
-} = require("mz/fs");
-const {
-  extname,
-  join,
-} = require("path");
+const { stat } = require("mz/fs");
+const { extname, join } = require("path");
 
 module.exports = (
-  path, {
-    extension = "html",
-    type = "text/html",
-    opts = {},
-  }
+  path,
+  { extension = "html", type = "text/html", opts = {} }
 ) => {
   let env = createEnv(path, opts);
 
@@ -45,7 +37,8 @@ function createEnv(path, opts) {
     new nunjucks.FileSystemLoader(path, {
       noCache,
       watch,
-    }), {
+    }),
+    {
       autoescape,
       throwOnUndefined,
       tags,
@@ -71,7 +64,8 @@ function getPaths(abs, rel, ext) {
       return rel;
     })
 
-    .catch(e => { // 不是 文件或者文件夹
+    .catch(e => {
+      // 不是 文件或者文件夹
       // 假如没有拓展名，或者拓展名和自定义的不同。
       if (!extname(rel) || extname(rel).slice(1) !== ext) {
         return getPaths(abs, `${rel}.${ext}`, ext);

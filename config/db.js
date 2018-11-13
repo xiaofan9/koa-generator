@@ -1,4 +1,5 @@
-module.exports = [{
+module.exports = [
+  {
     name: "test",
     port: "27017",
     host: "localhost",

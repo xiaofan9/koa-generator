@@ -8,10 +8,9 @@
   "scripts": {
     "init": "node ./bin/init",
     "unit": "mocha test/*.test.js",
-    "test": "npm run test",
+    "test": "npm run unit",
     "start": "pm2 start ecosystem.config.js",
-    "dev": "set NODE_ENV=development && nodemon ./bin/www",
-    "debug": "set debug=koa-generator:* && npm run dev"
+    "dev": "set debug=koa-generator:*&& set NODE_ENV=development&& nodemon ./bin/www"
   },
   "dependencies": {
     "koa": "^2.6.1",
