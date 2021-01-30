@@ -1,3 +1,7 @@
+## koa-generator
+
+> koa 生成器
+
 ### 一般的规定  
     app/controller 解析具体路由，处理用户的输入，返回相应的结果  
     app/middleware 中间件  
@@ -11,3 +15,6 @@
     bin 运行目录  
     test 单元测试目录  
     
+### 使用
+
+fork 到自己的gihub后，通过git clone xxx，然后打开对应文件夹运行 npm run init，完成后即可使用了
